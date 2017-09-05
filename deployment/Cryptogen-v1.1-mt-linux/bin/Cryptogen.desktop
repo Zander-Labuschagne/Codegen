@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Cryptogen 1.1
+Comment=Application used for the encryption and decryption of messages and files
+GenericName=Utility
+Exec=sh /opt/Cryptogen/bin/Cryptogen-v1.1-mt.sh
+Icon=/opt/Cryptogen/res/cryptogen.png
+Type=Application
+Version=1.1-mt
+Categories=GNOME;GTK;Utility;Security;
+MimeType=text/plain;
