@@ -13,7 +13,7 @@ import javafx.stage.StageStyle;
  * @author Zander Labuschagne
  * E-Mail: ZANDER.LABUSCHAGNE@PROTONMAIL.CH
  * Main class to be executed first.
- * Copyright (C) 2017  Zander Labuschagne and Elnette Moller
+ * Copyright (C) 2017  Zander Labuschagne
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation
  */
 public class Main extends Application
@@ -23,7 +23,7 @@ public class Main extends Application
     {
         cgWindow.initStyle(StageStyle.DECORATED);
         cgWindow.getIcons().add(new Image(getClass().getResourceAsStream("/icons/cryogen/icon.png")));
-        cgWindow.setTitle("Cryptogen V1.0.2");
+        cgWindow.setTitle("Codegen 1.0.0");
         FXMLLoader loader;
         if(System.getProperty("os.name").startsWith("Windows"))
             loader = new FXMLLoader(getClass().getResource("CodegenWindows.fxml"));
@@ -34,7 +34,7 @@ public class Main extends Application
         cgWindow.setResizable(false);
         cgWindow.setScene(createScene(loader.load()));
         cgWindow.getScene().getStylesheets().add("BreathDark.css");
-        Cryptogen cg = loader.getController();
+        Codegen cg = loader.getController();
         cg.initialize(cgWindow);
         cgWindow.show();
     }
