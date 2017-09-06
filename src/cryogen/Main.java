@@ -26,9 +26,9 @@ public class Main extends Application
         cgWindow.setTitle("Cryptogen V1.0.2");
         FXMLLoader loader;
         if(System.getProperty("os.name").startsWith("Windows"))
-            loader = new FXMLLoader(getClass().getResource("CryptogenWindows.fxml"));
+            loader = new FXMLLoader(getClass().getResource("CodegenWindows.fxml"));
         else
-            loader = new FXMLLoader(getClass().getResource("Cryptogen.fxml"));
+            loader = new FXMLLoader(getClass().getResource("Codegen.fxml"));
         cgWindow.setHeight(605);
         cgWindow.setWidth(720);
         cgWindow.setResizable(false);

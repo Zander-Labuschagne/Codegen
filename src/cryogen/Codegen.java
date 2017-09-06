@@ -35,13 +35,11 @@ import java.util.List;
 /**
  * @author Zander Labuschagne
  * E-Mail: ZANDER.LABUSCHAGNE@PROTONMAIL.CH
- * @author Elnette Moller
- * E-Mail: elnette.moller@gmail.com
- * Java class handler for the Cryptogen application main GUI
- * Copyright (C) 2017  Zander Labuschagne and Elnette Moller
+ * Java class handler for the Codegen application main GUI
+ * Copyright (C) 2017  Zander Labuschagne
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation
  */
-public class Cryptogen implements Initializable
+public class Codegen implements Initializable
 {
     //Instance Variables
     private List<File> files; //List of files to be encrypted or decrypted
@@ -55,10 +53,10 @@ public class Cryptogen implements Initializable
     @FXML private StackPane stackPane;
     @FXML private TitledPane pneFilePane;
     @FXML private TitledPane pneKey;
-    @FXML private RadioButton radVigenere;
-    @FXML private RadioButton radVernam;
-    @FXML private RadioButton radColumnarTrans;
-    @FXML private RadioButton radElephant;
+    @FXML private RadioButton radHuffman;
+    @FXML private RadioButton radRLE;
+    @FXML private RadioButton radLZW;
+    @FXML private RadioButton radJPEG;
     @FXML private TextArea txtMessage;
     @FXML private TextArea txtKey;
     @FXML private VBox vbox;
@@ -73,7 +71,7 @@ public class Cryptogen implements Initializable
     /**
      * Default Constructor
      */
-    public Cryptogen()
+    public Codegen()
     {
         files = null;
         exiting = false;
@@ -103,11 +101,11 @@ public class Cryptogen implements Initializable
     {
         this.currentStage = currentStage;
         getCurrentStage().setOnCloseRequest(confirmCloseEventHandler);//Set default close event
-        radVigenere.setToggleGroup(algorithms);
-        radVigenere.setSelected(true);
-        radVernam.setToggleGroup(algorithms);
-        radColumnarTrans.setToggleGroup(algorithms);
-        radElephant.setToggleGroup(algorithms);
+        radHuffman.setToggleGroup(algorithms);
+        radHuffman.setSelected(true);
+        radRLE.setToggleGroup(algorithms);
+        radLZW.setToggleGroup(algorithms);
+        radJPEG.setToggleGroup(algorithms);
         pneAlgorithmsPane.requestFocus();
         mnuLaF_BreathDark_Clicked(new ActionEvent());
 
@@ -144,25 +142,25 @@ public class Cryptogen implements Initializable
                 throw new EmptyKeyException("Please Enter a Key");
             }
 
-            if (radVigenere.isSelected())
+            if (radHuffman.isSelected())
             {
                 cipherMessage = Cryptography.VigenereCipher.encrypt(newMessage, key);
-                method = "Vigenère cipher.";
+                method = "Huffman code.";
             }
-            else if(radVernam.isSelected())
+            else if(radRLE.isSelected())
             {
                 cipherMessage = Cryptography.VernamCipher.encrypt(newMessage, key);
-                method = "Vernam cipher.";
+                method = "run length code.";
             }
-            else if(radColumnarTrans.isSelected())
+            else if(radLZW.isSelected())
             {
                 cipherMessage = Cryptography.ColumnarTranspositionCipher.encrypt(newMessage, key);
-                method = "columnar transposition cipher.";
+                method = "LZW compression.";
             }
-            else if(radElephant.isSelected())
+            else if(radJPEG.isSelected())
             {
                 cipherMessage = Cryptography.ElephantCipher.encrypt(newMessage, key);
-                method = "Elephant cipher.";
+                method = "JPEG Algorithm.";
             }
             txtMessage.setText(String.valueOf(cipherMessage));
         }
@@ -206,25 +204,25 @@ public class Cryptogen implements Initializable
                     encryptFiles(Arrays.asList(files.get(ii).listFiles()));
                 else if (files.get(ii).isFile())
                 {
-                    if (radVigenere.isSelected())
+                    if (radHuffman.isSelected())
                     {
                         Cryptography.VigenereCipher.encrypt(files.get(ii), key);
-                        method = "Vigenère cipher.";
+                        method = "Huffman code.";
                     }
-                    else if (radVernam.isSelected())
+                    else if (radRLE.isSelected())
                     {
                         Cryptography.VernamCipher.encrypt(files.get(ii), key);
-                        method = "Vernam cipher.";
+                        method = "run length code.";
                     }
-                    else if (radColumnarTrans.isSelected())
+                    else if (radLZW.isSelected())
                     {
                         Cryptography.ColumnarTranspositionCipher.encrypt(files.get(ii), key);
-                        method = "columnar transposition.";
+                        method = "LZW compression.";
                     }
-                    else if (radElephant.isSelected())
+                    else if (radJPEG.isSelected())
                     {
                         Cryptography.ElephantCipher.encrypt(files.get(ii), key);
-                        method = "Elephant Encryption.";
+                        method = "JPEG algorithm.";
                     }
                 }
             }
@@ -255,25 +253,25 @@ public class Cryptogen implements Initializable
                     decryptFiles(Arrays.asList(files.get(v).listFiles()));
                 else if (files.get(v).isFile() && files.get(v).getAbsoluteFile().getPath().substring(files.get(v).getAbsoluteFile().getPath().length() - 3, files.get(v).getAbsoluteFile().getPath().length()).equals(".cg"))
                 {
-                    if (radVigenere.isSelected())
+                    if (radHuffman.isSelected())
                     {
                         Cryptography.VigenereCipher.decrypt(files.get(v), key);
-                        method = "Vigenère cipher.";
+                        method = "Huffman code.";
                     }
-                    else if (radVernam.isSelected())
+                    else if (radRLE.isSelected())
                     {
                         Cryptography.VernamCipher.decrypt(files.get(v), key);
-                        method = "Vernam cipher.";
+                        method = "run length code.";
                     }
-                    else if (radColumnarTrans.isSelected())
+                    else if (radLZW.isSelected())
                     {
                         Cryptography.ColumnarTranspositionCipher.decrypt(files.get(v), key);
-                        method = "columnar transposition.";
+                        method = "LZW compression.";
                     }
-                    else if (radElephant.isSelected())
+                    else if (radJPEG.isSelected())
                     {
                         Cryptography.ElephantCipher.decrypt(files.get(v), key);
-                        method = "Elephant Encryption.";
+                        method = "JPEG algorithm.";
                     }
                 }
             }
@@ -381,25 +379,25 @@ public class Cryptogen implements Initializable
                 txtKey.requestFocus();
                 throw new EmptyKeyException("Please Enter a Key");
             }
-            if (radVigenere.isSelected())
+            if (radHuffman.isSelected())
             {
                 plainMesage = Cryptography.VigenereCipher.decrypt(newMessage, key);
-                method = "Vigenère cipher.";
+                method = "Huffman code.";
             }
-            else if(radVernam.isSelected())
+            else if(radRLE.isSelected())
             {
                 plainMesage = Cryptography.VernamCipher.decrypt(newMessage, key);
-                method = "Vernam cipher.";
+                method = "run length code.";
             }
-            else if(radColumnarTrans.isSelected())
+            else if(radLZW.isSelected())
             {
                 plainMesage = Cryptography.ColumnarTranspositionCipher.decrypt(newMessage, key);
-                method = "columnar transposition cipher.";
+                method = "LZW compression.";
             }
-            else if(radElephant.isSelected())
+            else if(radJPEG.isSelected())
             {
                 plainMesage = Cryptography.ElephantCipher.decrypt(newMessage, key);
-                method = "Elephant cipher.";
+                method = "JPEG algorithm.";
             }
             txtMessage.setText(String.valueOf(plainMesage));
         }
@@ -840,14 +838,14 @@ public class Cryptogen implements Initializable
         btnEncryptFiles.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
         btnDecryptFiles.getStylesheets().clear();
         btnDecryptFiles.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
-        radElephant.getStylesheets().clear();
-        radElephant.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
-        radColumnarTrans.getStylesheets().clear();
-        radColumnarTrans.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
-        radVernam.getStylesheets().clear();
-        radVernam.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
-        radVigenere.getStylesheets().clear();
-        radVigenere.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
+        radJPEG.getStylesheets().clear();
+        radJPEG.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
+        radLZW.getStylesheets().clear();
+        radLZW.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
+        radRLE.getStylesheets().clear();
+        radRLE.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
+        radHuffman.getStylesheets().clear();
+        radHuffman.getStylesheets().add(getClass().getResource("MidnaDark.css").toExternalForm());
     }
 
     /**
@@ -855,7 +853,7 @@ public class Cryptogen implements Initializable
      * @param event
      */
     @FXML
-    protected void mnuLaF_Midna_Clicked(ActionEvent event)
+    protected void mnuLaF_Midna_Clicked(ActionEvent event)//TODO: Check contact organzier for to update CSS theming
     {
         laf = "Midna.css";
         vbox.getStylesheets().clear();
@@ -880,14 +878,14 @@ public class Cryptogen implements Initializable
         btnEncryptFiles.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
         btnDecryptFiles.getStylesheets().clear();
         btnDecryptFiles.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
-        radElephant.getStylesheets().clear();
-        radElephant.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
-        radColumnarTrans.getStylesheets().clear();
-        radColumnarTrans.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
-        radVernam.getStylesheets().clear();
-        radVernam.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
-        radVigenere.getStylesheets().clear();
-        radVigenere.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
+        radJPEG.getStylesheets().clear();
+        radJPEG.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
+        radLZW.getStylesheets().clear();
+        radLZW.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
+        radRLE.getStylesheets().clear();
+        radRLE.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
+        radHuffman.getStylesheets().clear();
+        radHuffman.getStylesheets().add(getClass().getResource("Midna.css").toExternalForm());
     }
 
     /**
@@ -920,14 +918,14 @@ public class Cryptogen implements Initializable
         btnEncryptFiles.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
         btnDecryptFiles.getStylesheets().clear();
         btnDecryptFiles.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
-        radElephant.getStylesheets().clear();
-        radElephant.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
-        radColumnarTrans.getStylesheets().clear();
-        radColumnarTrans.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
-        radVernam.getStylesheets().clear();
-        radVernam.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
-        radVigenere.getStylesheets().clear();
-        radVigenere.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
+        radJPEG.getStylesheets().clear();
+        radJPEG.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
+        radLZW.getStylesheets().clear();
+        radLZW.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
+        radRLE.getStylesheets().clear();
+        radRLE.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
+        radHuffman.getStylesheets().clear();
+        radHuffman.getStylesheets().add(getClass().getResource("BreathDark.css").toExternalForm());
     }
 
     /**

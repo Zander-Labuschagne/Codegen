@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="vbox" fx:id="vbox" prefHeight="580.0" prefWidth="730.0" styleClass="vbox" stylesheets="@MidnaDark.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cryogen.Cryptogen">
+<VBox id="vbox" fx:id="vbox" prefHeight="580.0" prefWidth="730.0" styleClass="vbox" stylesheets="@MidnaDark.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cryogen.Codegen">
         <AnchorPane id="anchorPane" prefHeight="281.0" prefWidth="444.0" VBox.vgrow="ALWAYS">
             <MenuBar id="mnu" fx:id="mnu" layoutY="2.0" prefHeight="24.0" prefWidth="730.0">
                 <Menu mnemonicParsing="false" text="File">
@@ -38,10 +38,10 @@
             </MenuBar>
             <TitledPane id="pneAlgorithmsPane" fx:id="pneAlgorithmsPane" collapsible="false" layoutX="14.0" layoutY="41.0" prefHeight="161.0" prefWidth="395.0" styleClass="pneDefault" stylesheets="@MidnaDark.css" text="Algorithms">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="149.0" prefWidth="393.0">
-                        <RadioButton id="radVigenere" fx:id="radVigenere" layoutX="37.0" layoutY="16.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Vigenère Cipher" />
-                        <RadioButton id="radVernam" fx:id="radVernam" layoutX="37.0" layoutY="44.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Vernam Cipher / One-Time Pad" />
-                        <RadioButton id="radColumnarTrans" fx:id="radColumnarTrans" layoutX="37.0" layoutY="72.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Columnar Transposition" />
-                         <RadioButton id="radElephant" fx:id="radElephant" layoutX="37.0" layoutY="99.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Elephant Cipher" />
+                        <RadioButton id="radHuffman" fx:id="radHuffman" layoutX="37.0" layoutY="16.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Huffman Coding" />
+                        <RadioButton id="radRLE" fx:id="radRLE" layoutX="37.0" layoutY="44.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="Run Length Encoding (RLE)" />
+                        <RadioButton id="radLZW" fx:id="radLZW" layoutX="37.0" layoutY="72.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="LZW Compression" />
+                         <RadioButton id="radJPEG" fx:id="radJPEG" layoutX="37.0" layoutY="99.0" mnemonicParsing="false" styleClass="radDefault" stylesheets="@MidnaDark.css" text="JPEG Algorithm" />
                   </AnchorPane>
             </TitledPane>
             <Button id="btnEncryptMessage" fx:id="btnEncryptMessage" layoutX="17.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnEncryptMessage_Clicked" prefHeight="25.0" prefWidth="165.0" styleClass="btnEncryptMessage" stylesheets="@MidnaDark.css" text="Encrypt Message" />
